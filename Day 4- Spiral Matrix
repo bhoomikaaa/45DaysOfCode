@@ -1,0 +1,42 @@
+ // 4 pointer approach
+ T(C)-O(n)
+ S(c)-O(1)
+ 
+ 
+ vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans;
+        int row= matrix.size();
+        int col= matrix[0].size();
+        int left =0, right= col-1, top=0, bottom=row-1;
+        
+        while( top<=bottom && left<=right){
+            for(int i=left;i<=right;i++)
+                ans.push_back(matrix[top][i]);
+            top++;  
+            
+            for(int i=top; i<=bottom;i++)
+                ans.push_back(matrix[i][right]);
+                    right--;
+            
+            if(top<=bottom){
+                //only if there are more than one row we will move from right to left
+                for(int i=right;i>=left;i--)
+                    ans.push_back(matrix[bottom][i]);
+                bottom--;
+            }
+            if(left<=right){
+                //only if there are more than one column , we will move from bottom to top
+                for(int i=bottom ; i>=top;i--)
+                    ans.push_back(matrix[i][left]);
+                left++;
+                    
+            }
+        
+        
+        
+        }
+        return ans;
+        
+        
+        
+    }
