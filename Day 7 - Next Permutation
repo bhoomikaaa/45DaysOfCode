@@ -1,0 +1,26 @@
+T(C)- O(n)
+
+https://leetcode.com/problems/next-permutation/
+
+ void nextPermutation(vector<int>& nums) {
+        int i,j;
+        int n= nums.size();
+        
+        for(i= n-2;i>=0;i--){ // the first breakpoint can be at the second last position
+            if(nums[i]<nums[i+1]){
+                break;
+            }
+        }
+            if(i<0) // if there is no breakpoint that is the array is in decreasing order
+                reverse(nums.begin(),nums.end());
+            else{
+            for(j=n-1;j>i;j++){ // finding just greater element than the breakpoint in the right isde of it to swap it
+                if(nums[j]>nums[i]){
+                    break;
+            }
+            }
+            
+            swap(nums[i],nums[j]); 
+            reverse(nums.begin()+i+1,nums.end()); // reversing the right isde of the breakpoint after swapping to make it the smallest greater element
+        }
+    }
