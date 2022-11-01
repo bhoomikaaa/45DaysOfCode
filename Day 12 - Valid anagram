@@ -1,0 +1,41 @@
+
+Approach 1 - Using sorting
+T(C) -O(n logn)
+bool isAnagram(string s, string t) {
+        if(s.length()!=t.length())
+            return false;
+            sort(s.begin(),s.end());
+            sort(t.begin(),t.end());
+        if(t==s)
+        {
+            return true;
+        }
+        else
+        {
+            return false ;
+            
+        }
+        
+    }
+    
+    Approach 2 - Using hash table
+    T(C)- O(N)
+    S(C)-O(1) // bcz we are taking constant space vectors
+    
+     bool isAnagram(string s, string t) {
+         if(s.length() != t.length()) return false;
+        // Count the freq of every character in s & t...
+        vector<int> counter1(26,0), counter2(26,0);
+        // Traverse through the loop...
+        for(int i = 0; i < s.length(); i++) {
+            counter1[s[i]-'a']++;
+            counter2[t[i]-'a']++;
+        }
+        // Compare freq1[i] and freq2[i] for every index i from 0 to 26...
+        for(int i = 0; i < 26; i++) {
+            // If they are different, return false...
+            if(counter1[i] != counter2[i]) return false;
+        }
+        return true;    
+    }
+};
