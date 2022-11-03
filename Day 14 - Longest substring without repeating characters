@@ -1,0 +1,57 @@
+Approach 1- Considering all substrings and checking if the characters are unique
+
+Time Complexity: O(n^3) since we are processing n^2 substrings with maximum length n.
+Auxiliary Space: O(1)
+
+ bool areUnique(string s,int i, int j)
+    {
+        vector<bool>visited(26);
+        for(int k=i;k<=j;k++){
+            if(visited[s[k]-'a']==true)
+                return false;
+            visited[s[k]-'a']= true;
+             }
+        return true;
+    }
+     int lengthOfLongestSubstring(string s) {
+        int n = s.size();
+        int res=0;
+        for(int i=0;i<n;i++)
+            for(int j=i;j<n;j++)
+                if(areUnique(s,i,j))
+                    res=max(res,j-i+1);
+        return res;
+                    
+    }
+    
+    Approach 2 Using sliding window algorithm 
+ Time Complexity: O(n) 
+Auxiliary Space: O(n)
+    
+    int lengthOfLongestSubstring(string s) {
+       if (s.size()==0) {
+            return 0;
+        }
+        int n = s.length();
+        //starting window index
+        int start = 0;
+        // Ending window index
+        int end = 0;
+        // Maximum length of substring
+        int maxLength = 0;
+        unordered_set<char>set;
+        while(start<n && end<n){
+            if(set.find(s[end])==set.end()){
+                set.insert(s[end]);
+                end++;
+                maxLength= max(maxLength, end-start+1);
+            }
+            else
+            {
+                 s.erase(s[start]);
+                start++;
+            
+            }
+        }
+        return maxLength;
+    }
