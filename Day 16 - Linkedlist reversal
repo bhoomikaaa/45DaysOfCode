@@ -1,0 +1,21 @@
+Iteraltive approach
+T(C)- O(N)
+S(c)- O(N)
+
+ListNode* reverseList(ListNode* head) {
+
+        ListNode *prev= nullptr;
+        ListNode *curr= head;
+        
+        ListNode* nex;
+        while(curr){
+            nex= curr->next;
+            curr->next= prev;
+            prev= curr;
+            curr= nex;
+
+        }
+        
+        return prev;
+        
+    }
