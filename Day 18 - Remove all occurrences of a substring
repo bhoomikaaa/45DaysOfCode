@@ -1,0 +1,10 @@
+https://leetcode.com/problems/remove-all-occurrences-of-a-substring/description/
+
+  string removeOccurrences(string s, string part) {
+        while(s.length()!= 0 && s.find(part) < s.length()) // find function returns the first occurence of that substring in the string
+        {
+            s.erase(s.find(part),part.length()); // erase functions removes the substring in the specified length
+
+        }
+        return s;
+    }
