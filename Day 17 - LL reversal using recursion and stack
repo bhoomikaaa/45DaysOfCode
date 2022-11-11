@@ -1,0 +1,33 @@
+Linkedlist reversal using recursion
+
+ ListNode* reverseList(ListNode* head) {
+           if (!head || !(head->next)) 
+           return head;
+           ListNode* temp = reverseList(head->next);
+           head->next->next = head;
+           head->next = nullptr;
+           return temp;    
+    }
+    
+    
+Linkedlist reversal using stack
+
+ ListNode* reverseList(ListNode* head) {
+            stack<int>s ;
+            ListNode* temp = head;
+           while( temp != nullptr )  
+           {
+               s.push(temp->val);
+               temp = temp->next;
+           }
+
+                 
+           temp=head; //  temp pointing to the last node of list
+           while(temp  != nullptr){
+           temp->val  =  s.top();
+           s.pop();
+           temp=temp->next;
+           }
+               return head;
+
+    }
