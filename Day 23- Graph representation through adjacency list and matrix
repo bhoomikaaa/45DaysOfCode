@@ -1,0 +1,76 @@
+Adjacency list
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Add edge
+void addEdge(vector<int> adj[], int s, int d) {
+  adj[s].push_back(d);
+  adj[d].push_back(s);
+}
+
+// Print the graph
+void printGraph(vector<int> adj[], int V) {
+  for (int d = 0; d < V; ++d) {
+    cout
+       << d << ":";
+    for (auto x : adj[d])
+      cout << "-> " << x;
+    printf("\n");
+  }
+}
+
+int main() {
+  int V = 5;
+
+  // Create a graph
+  vector<int> adj[V];
+
+  // Add edges
+  addEdge(adj, 0, 1);
+  addEdge(adj, 0, 2);
+  addEdge(adj, 0, 3);
+  addEdge(adj, 1, 2);
+  printGraph(adj, V);
+}
+
+T(C)-O(E)
+S(C)-O(V+E)
+
+
+Adjacency matrix
+
+#include<bits/stdc++.h>
+using namespace std;
+int adj[50][50];
+void addEdge(int u, int v){
+adj[u][v]=1;
+adj[v][u]=1;
+} // only for undirected graphs, we have to do it twice
+
+void printGraph(int V){
+int i,j;
+for(int i=0;i<V;i++){
+    for(int j=0;j<V;j++){
+        cout<<adj[i][j]<<" ";
+    }
+    cout<<endl;
+}
+}
+
+int main()
+{
+int V=5;
+addEdge(1,2);
+addEdge(1,5);
+addEdge(2,3);
+addEdge(3,4);
+addEdge(3,6);
+printGraph(V);
+return 0;
+
+}
+
+
+T(C)- O(N*N)
+S(C)-O(N*N)
