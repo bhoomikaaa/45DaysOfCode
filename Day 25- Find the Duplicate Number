@@ -1,0 +1,63 @@
+
+
+Approach 1 Using a count vector which stores the frequency of all elements
+T(C)- O(N)
+S(C)- O(N)
+
+int findDuplicate(vector<int>& nums) {
+       int ans = 0;
+       int n= nums.size();
+        vector <int> count(n,0);
+        for(int i=0; i<n; i++){
+            count[nums[i]]++;
+        }
+        for(int i=0;i<count.size();i++){
+            if(count[nums[i]]>1){
+                ans = nums[i];
+            }
+        }
+        return ans;
+    }
+    
+    Approach 2 using array elements as indices
+    Note: This method modifies the original array and may not be a recommended method if it’s not allowed to modify the array. 
+    T(C)- O(N)
+    S(C)- O(1)
+
+    
+     int findDuplicate(vector<int>& nums) {
+        int n = nums.size();
+        int ans=0;
+        for(int i=0; i<n; i++){
+             if (nums[abs(nums[i])] > 0)
+            nums[abs(nums[i])] = -nums[abs(nums[i])];
+            else{
+                ans = abs(nums[i]);
+            }
+        }
+        return ans;
+    }
+    
+    Approach 3 Using the concept of cycle in a linkedlist
+     T(C)- O(N)
+    S(C)- O(1)
+    
+     int findDuplicate(vector<int>& nums) {
+        int slow = nums[0];
+        int fast = nums[0];
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+        while(slow!=fast);
+
+        fast = nums[0];
+        while(slow!=fast){
+            slow=nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
+    
+    
+    
